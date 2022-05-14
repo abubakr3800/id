@@ -21,7 +21,7 @@
       <p>Contact: <span id="cal">+91-XXXXXXXXXX</span></p>
       <div class="social">
         <a href="#" id="facebook"><i class="fa fa-facebook"></i></a>
-        <a href="#" id="gmail"><i class="fa-solid fa-envelope"></i></a>
+        <a href="#" id="gmail"><i class="fa fa-envelope"></i></a>
       </div>
     </div>
     
@@ -55,7 +55,7 @@
             document.querySelector("#job").textContent = data[0].job;
             document.querySelector("#cal").textContent = data[0].phone;
             document.querySelector("#facebook").href = data[0].facebook;
-            document.querySelector("#gmail").href = data[0].gmail;
+            document.querySelector("#gmail").href = "mailto:" + data[0].email;
 
           
           })
