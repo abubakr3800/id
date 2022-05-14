@@ -45,12 +45,13 @@
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
-//             try {
-//               document.querySelector("#idim").src = data[0].image;
-//             }
-//             catch(err) {
-//               console.log("sorry about image");
-//             }
+            var exp = "https://drive.google.com/uc?export=view&id=";
+            try {
+              document.querySelector("#idim").src = exp + data[0].image.split("=")[1];
+            }
+            catch(err) {
+              console.log("sorry about image");
+            }
             document.querySelector("#name").textContent = data[0].name;
             document.querySelector("#job").textContent = data[0].job;
             document.querySelector("#cal").textContent = data[0].Phone;
