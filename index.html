@@ -45,14 +45,43 @@
 //         document.querySelectorAll('.eid')[0].textContent = decodeURI(name().join(' ')) ;
 //         document.querySelectorAll('.eid')[1].textContent = decodeURI(name().join(' ')) ;
 //         document.querySelectorAll('.eid')[0].setAttribute('href', 'https://api.whatsapp.com/send/?text=https://alm143.github.io/eid/eid.html?name=' + name().join('+') );
-      fullname = name().join(' ');
-        console.log(fullname);
+        fullname = name().join(' ');
+       return fullname;
       }
 
       function name(){
           var fname = window.location.href.split('=');
           var name= fname[1].split('+');
           return name;
+      }
+      
+//       var query_params = new URLSearchParams({
+//         'limit': 10,
+//         'query_type': 'and',
+//         'Name': getname(),
+//       });
+//       var url = 'https://sheet2api.com/v1/jE2Iq3UHS0qV/data-for-id/ردود النموذج 1?' + query_params;
+
+//       fetch(url)
+//         .then(response => response.json())
+//         .then(data => {
+//           console.log('Success:', data);
+//         })
+//         .catch((error) => {
+//           console.error('Error:', error);
+//         });
+      
+      function ecname(){
+        var url = 'https://sheet2api.com/v1/jE2Iq3UHS0qV/data-for-id/ردود النموذج 1?nickname=' + name().join("+") ;
+
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            console.log('Success:', data);
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+          });
       }
     </script>
 
