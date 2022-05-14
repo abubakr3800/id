@@ -16,11 +16,11 @@
     <h1 style="text-align:center">Identity Card</h1>
     <div class="card">
       <img id="idim" src="https://pngimg.com/uploads/hacker/hacker_PNG24.png" alt="image" />
-      <h1>SALY</h1>
-      <div id="name" class="designation">Blogger Designer</div>
-      <p>Contact: <a id="cal">+91-XXXXXXXXXX</a></p>
+      <h1 id="name">SALY</h1>
+      <div id="job" class="designation">Blogger Designer</div>
+      <p>Contact: +91-XXXXXXXXXX</p>
       <div class="social">
-        <a href="#"><i class="fa fa-facebook"></i></a>
+        <a href="#" id="facebook"><i class="fa fa-facebook"></i></a>
         <a href="#"><i class="fa fa-instagram"></i></a>
         <a href="#"><i class="fa fa-youtube"></i></a>
         <a href="#"><i class="fa fa-twitter"></i></a>
@@ -57,14 +57,16 @@
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
-            try {
-              document.querySelector("#idim").src = data[0].image;
-            }
-            catch(err) {
-              console.log("sorry about image");
-            }
+//             try {
+//               document.querySelector("#idim").src = data[0].image;
+//             }
+//             catch(err) {
+//               console.log("sorry about image");
+//             }
             document.querySelector("#name").textContent = data[0].name;
+            document.querySelector("#job").textContent = data[0].job;
             document.querySelector("#cal").textContent = data[0].phone;
+            document.querySelector("#facebook").href = data[0].facebook;
           
           })
           .catch((error) => {
