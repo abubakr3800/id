@@ -15,10 +15,10 @@
   <body>
     <h1 style="text-align:center">Identity Card</h1>
     <div class="card">
-      <img src="https://i.imgur.com/IDiMDuc.png" alt="image" />
+      <img id="idim" src="https://pngimg.com/uploads/hacker/hacker_PNG24.png" alt="image" />
       <h1>SALY</h1>
-      <div class="designation">Blogger Designer</div>
-      <p>Contact: +91-XXXXXXXXXX</p>
+      <div id="name" class="designation">Blogger Designer</div>
+      <p>Contact: <a id="cal">+91-XXXXXXXXXX</a></p>
       <div class="social">
         <a href="#"><i class="fa fa-facebook"></i></a>
         <a href="#"><i class="fa fa-instagram"></i></a>
@@ -27,9 +27,7 @@
       </div>
     </div>
     
-  <div @click="getname">{{ fullname }}</div>
-
-<div v-if="1 = 0" data-spreadsheet-api="https://sheet2api.com/v1/jE2Iq3UHS0qV/data-for-id/%25D8%25B1%25D8%25AF%25D9%2588%25D8%25AF%2520%25D8%25A7%25D9%2584%25D9%2586%25D9%2585%25D9%2588%25D8%25B0%25D8%25AC%25201">
+<!-- <div v-if="1 = 0" data-spreadsheet-api="https://sheet2api.com/v1/jE2Iq3UHS0qV/data-for-id/%25D8%25B1%25D8%25AF%25D9%2588%25D8%25AF%2520%25D8%25A7%25D9%2584%25D9%2586%25D9%2585%25D9%2588%25D8%25B0%25D8%25AC%25201">
     <div><b>طابع زمني:</b>{{طابع زمني}}</div>
     <div><b>Name:</b>{{name}}</div>
     <div><b>Job:</b>{{job}}</div>
@@ -37,39 +35,20 @@
     <div><b>Facebook:</b>{{facebook}}</div>
     <div><b>Email:</b>{{email}}</div>
     <div><b>Image:</b>{{image}}</div>
-</div>
+</div> -->
+    
 <script src="https://sheet2api.com/v1/template.js"></script>
     <script>
-      var fullname;
+      var fullname , fname = window.location.href.split('=');
       function getname(){
-//         document.querySelectorAll('.eid')[0].textContent = decodeURI(name().join(' ')) ;
-//         document.querySelectorAll('.eid')[1].textContent = decodeURI(name().join(' ')) ;
-//         document.querySelectorAll('.eid')[0].setAttribute('href', 'https://api.whatsapp.com/send/?text=https://alm143.github.io/eid/eid.html?name=' + name().join('+') );
         fullname = name().join(' ');
        return fullname;
       }
 
       function name(){
-          var fname = window.location.href.split('=');
           var name= fname[1].split('+');
           return name;
       }
-      
-//       var query_params = new URLSearchParams({
-//         'limit': 10,
-//         'query_type': 'and',
-//         'Name': getname(),
-//       });
-//       var url = 'https://sheet2api.com/v1/jE2Iq3UHS0qV/data-for-id/ردود النموذج 1?' + query_params;
-
-//       fetch(url)
-//         .then(response => response.json())
-//         .then(data => {
-//           console.log('Success:', data);
-//         })
-//         .catch((error) => {
-//           console.error('Error:', error);
-//         });
       
       function ecname(){
         var url = 'https://sheet2api.com/v1/jE2Iq3UHS0qV/data-for-id/ردود النموذج 1?nickname=' + name().join("+") ;
@@ -78,6 +57,15 @@
           .then(response => response.json())
           .then(data => {
             console.log('Success:', data);
+            try {
+              document.querySelector("#idim").src = data[0].image;
+            }
+            catch(err) {
+              console.log("sorry about image");
+            }
+            document.querySelector("#name").textContent = data[0].name;
+            document.querySelector("#cal").textContent = data[0].phone;
+          
           })
           .catch((error) => {
             console.error('Error:', error);
