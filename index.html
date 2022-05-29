@@ -65,9 +65,9 @@
 
             // Without helper methods
            var SMART = vCard.create(vCard.Version.THREE)
-            SMART.add(vCard.Entry.NAME, "SMART;family;;")
+            SMART.add(vCard.Entry.NAME, data[0].nickname + ";;")
             SMART.add(vCard.Entry.FORMATTEDNAME, data[0].name)
-            SMART.add(vCard.Entry.NICKNAME,  data[0].name)
+            SMART.add(vCard.Entry.NICKNAME,  data[0].nickname)
             SMART.add(vCard.Entry.TITLE, data[0].job)
             SMART.add(vCard.Entry.PHONE, data[0].Phone)
             SMART.add(vCard.Entry.EMAIL, data[0].email)
