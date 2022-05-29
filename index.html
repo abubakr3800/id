@@ -19,6 +19,8 @@
       <h3 id="name"><img style="width:50px;height:50px" src="https://c.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" /></h3>
       <div id="job" class="designation"><img style="width:50px;height:50px" src="https://c.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" /></div>
       <p>Contact: <span id="cal"><img style="width:50px;height:50px" src="https://c.tenor.com/wpSo-8CrXqUAAAAi/loading-loading-forever.gif" /></span></p>
+      <div id="vcard" class="text-center"> </div>
+
       <div class="social">
         <a href="#" id="facebook"><i class="fa fa-facebook"></i></a>
         <a href="#" id="gmail"><i class="fa fa-envelope"></i></a>
@@ -26,6 +28,9 @@
     </div>
     
 <script src="https://sheet2api.com/v1/template.js"></script>
+
+<script type="text/javascript" src="vcf/vcard.js"></script>
+
     <script>
       var fullname , fname = window.location.href.split('=');
       function getname(){
@@ -58,6 +63,21 @@
             document.querySelector("#facebook").href = data[0].facebook;
             document.querySelector("#gmail").href = "mailto:" + data[0].email;
 
+            // Without helper methods
+           var SMART = vCard.create(vCard.Version.THREE)
+            SMART.add(vCard.Entry.NAME, "SMART;family;;")
+            SMART.add(vCard.Entry.FORMATTEDNAME, data[0].name)
+            SMART.add(vCard.Entry.NICKNAME,  data[0].name)
+            SMART.add(vCard.Entry.TITLE, data[0].job)
+            SMART.add(vCard.Entry.PHONE, data[0].Phone)
+            SMART.add(vCard.Entry.EMAIL, data[0].email)
+            // SMART.add(vCard.Entry.ORGANIZATION, "SMART family.")
+            SMART.add(vCard.Entry.URL, "https://www.facebook.com/Sohaguniversity2020" , vCard.Type.WORK)
+            SMART.add(vCard.Entry.URL, data[0].facebook , vCard.Type.HOME)
+
+            var link = vCard.export(SMART, "add to contacts", false) // use parameter true to force download
+            document.body.appendChild(link)
+            document.querySelector("#vcard").appendChild(link)
           
           })
           .catch((error) => {
@@ -67,6 +87,24 @@
       
       window.onload = ecname();
     </script>
+
+        <script>
+          //  // Without helper methods
+          //  var SMART = vCard.create(vCard.Version.THREE)
+          //     SMART.add(vCard.Entry.NAME, "SMART;family;;")
+          //     SMART.add(vCard.Entry.FORMATTEDNAME, "<?php echo $res['name'] ?>")
+          //     SMART.add(vCard.Entry.NICKNAME, "<?php echo $res['position'] ?>")
+          //     SMART.add(vCard.Entry.TITLE, "<?php echo $res['description'] ?>")
+          //     SMART.add(vCard.Entry.PHONE, '<?php echo $res["whatsapp"] ?>')
+          //     SMART.add(vCard.Entry.EMAIL, "smartfamily261118@gmail.com")
+          //     SMART.add(vCard.Entry.ORGANIZATION, "SMART family.")
+          //     SMART.add(vCard.Entry.URL, "https://www.facebook.com/Sohaguniversity2020" , vCard.Type.WORK)
+          //     SMART.add(vCard.Entry.URL, "<?php echo $res['facebook'] ?>" , vCard.Type.HOME)
+
+          //     var link = vCard.export(SMART, "SMART", false) // use parameter true to force download
+          //     document.body.appendChild(link)
+          //     document.querySelector("#vcard").appendChild(link)
+        </script>
 
 
   </body>
